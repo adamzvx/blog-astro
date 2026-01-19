@@ -1,0 +1,109 @@
+---
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+const { frontmatter } = Astro.props;
+
+const formattedDate = new Date(frontmatter.date).toLocaleDateString('id-ID', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{frontmatter.title}</title>
+  </head>
+  <body class="bg-white antialiased text-slate-900">
+    
+    <nav class="max-w-3xl mx-auto px-6 py-10 flex justify-between items-center">
+      <a href="/" class="text-xl font-bold tracking-tighter">adam.</a>
+      <div class="space-x-6 text-sm font-medium text-slate-500">
+        <a href="/" class="hover:text-black transition">About</a>
+        <a href="/cv" class="hover:text-black transition">CV</a>
+        <a href="/blog" class="hover:text-black transition text-black">Blog</a>
+      </div>
+    </nav>
+
+    <main class="max-w-2xl mx-auto px-6 pb-20">
+      <article>
+        <header class="mb-12">
+          <time class="text-sm text-slate-400 font-medium mb-3 block">{formattedDate}</time>
+          <h1 class="text-3xl md:text-5xl font-serif font-medium leading-[1.1] tracking-tight text-slate-900 mb-6 italic">
+            {frontmatter.title}
+          </h1>
+          
+          <div class="flex items-center gap-3 border-y border-slate-100 py-4 mb-8">
+             <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-xs font-bold text-slate-400">
+               A
+             </div>
+             <div class="text-xs tracking-widest font-semibold uppercase">
+               Adam
+             </div>
+          </div>
+
+          {frontmatter.image && (
+            <figure class="mb-10">
+              <img 
+                src={frontmatter.image} 
+                alt={frontmatter.title} 
+                class="w-full h-auto rounded-2xl shadow-sm object-cover max-h-[400px]"
+              />
+              {frontmatter.imageCaption && (
+                <figcaption class="text-center text-xs text-slate-400 mt-3 italic">
+                  {frontmatter.imageCaption}
+                </figcaption>
+              )}
+            </figure>
+          )}
+        </header>
+
+        <div class="blog-content font-serif text-lg leading-relaxed text-slate-800 space-y-6">
+          <slot />
+        </div>
+      </article>
+
+      <footer class="mt-20 pt-10 border-t border-slate-100 text-center">
+        <a href="/blog" class="text-sm font-bold text-blue-600 hover:underline underline-offset-4">
+          &larr; Back
+        </a>
+      </footer>
+    </main>
+
+    <style is:global>
+      @reference "../styles/global.css";
+      
+      .blog-content h2 {
+        @apply text-2xl font-bold font-serif italic mt-12 mb-4 text-slate-900;
+      }
+      .blog-content h3 {
+        @apply text-xl font-bold font-serif mt-8 mb-3 text-slate-900;
+      }
+      .blog-content p {
+        @apply mb-6 leading-relaxed;
+      }
+      .blog-content ul {
+        @apply list-disc list-inside mb-6 space-y-2 pl-4;
+      }
+      .blog-content ol {
+        @apply list-decimal list-inside mb-6 space-y-2 pl-4;
+      }
+      .blog-content blockquote {
+        @apply border-l-4 border-slate-200 pl-6 italic text-slate-500 my-8;
+      }
+      /* Styling untuk foto di dalam konten markdown */
+      .blog-content img {
+        @apply rounded-2xl my-10 shadow-sm mx-auto w-full h-auto;
+      }
+      .blog-content pre {
+        @apply bg-slate-900 text-slate-100 p-6 rounded-xl overflow-x-auto my-8 font-mono text-sm;
+      }
+      .blog-content a {
+        @apply text-blue-600 underline underline-offset-4 decoration-slate-300 hover:decoration-blue-600;
+      }
+    </style>
+    <Footer />
+  </body>
+</html>

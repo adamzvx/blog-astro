@@ -1,0 +1,15 @@
+---
+import LayoutMain from '../layouts/LayoutMain.astro';
+const posts = await Astro.glob('./blog/*.md');
+---
+
+<LayoutMain title="Daftar Blog">
+  <h1 class="text-3xl font-bold mb-6">Tulisan Saya</h1>
+  <div class="grid gap-4">
+    {posts.map(post => (
+      <a href={post.url} class="p-4 bg-white rounded-lg shadow hover:shadow-md transition">
+        <h2 class="text-xl font-semibold text-blue-500">{post.frontmatter.title}</h2>
+      </a>
+    ))}
+  </div>
+</LayoutMain>

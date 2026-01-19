@@ -1,0 +1,58 @@
+---
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/LayoutBlog.astro';
+import '../styles/global.css';
+import LayoutMain from '../layouts/LayoutMain.astro';
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Bagian Script (Server-side)
+const nama = "Budi Santoso";
+const keahlian = ["Astro", "Firebase", "Tailwind CSS"];
+const pengalaman = [
+  { posisi: "Web Developer", tahun: "2023 - Sekarang" },
+  { posisi: "Junior Dev", tahun: "2021 - 2022" }
+];
+---
+<!-- <Layout>
+	<!-- <Welcome /> 
+	 <h1>hello astro</h1>
+</Layout> -->
+<LayoutMain title="Portofolio Saya">
+  <html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <title>Portofolio {nama}</title>
+    <style>
+      body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 2rem; }
+      section { margin-bottom: 2rem; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Halo, Saya {nama} 👋</h1>
+      <p>Seorang pengembang web yang fokus pada kecepatan dan performa.</p>
+    </header>
+    <section>
+      <h2>Keahlian</h2>
+      <ul>
+        {keahlian.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Pengalaman</h2>
+      {pengalaman.map((p) => (
+        <div>
+          <strong>{p.posisi}</strong> — <span>{p.tahun}</span>
+        </div>
+      ))}
+    </section>
+
+    <footer>
+      <a href="/blog">Lihat Blog Saya -></a>
+    </footer>
+  </body>
+</html>
+</LayoutMain>
+
+

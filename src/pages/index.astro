@@ -1,11 +1,36 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import LayoutMain from '../layouts/LayoutMain.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<LayoutMain title="About Me">
+  <section class="mt-10">
+    <h1 class="text-4xl font-serif font-medium mb-6 italic"></h1>
+    <div class="prose prose-lg text-slate-700 leading-relaxed space-y-4 font-serif">
+      <p>
+        A moderate Muslim who values reflection, learning, and balance.
+        Software Developer in the corporate manufacturing industry.       
+        Guided by humility, curiosity, and continuous improvement.
+        Open to freelance software projects focused on business growth.
+        Feel free to get in touch for collaboration, ideas, or thoughtful conversations about life.
+      </p>
+      <a class="bg-gray-900 px-4 py-2 text-sm font-medium text-white transition" href="https://t.me/adaminini">chat me</a>
+      <!-- <p>
+        A moderate Muslim guided by balance, curiosity, and reflection.
+        Software developer in the corporate manufacturing sector, focused on reliable and maintainable software systems. 
+        Open to freelance IT projects, especially software development that supports business growth.
+        Growth driven by humility, learning, and awareness of limitations.
+      </p> -->
+      <!-- <p>
+        Saya seorang pengembang web yang percaya bahwa teknologi harusnya mempermudah hidup, bukan memperumitnya. 
+      </p>
+      <p>
+        Saat ini saya fokus mendalami ekosistem <strong>Astro</strong> dan <strong>Cloudflare</strong> untuk membangun aplikasi yang sangat cepat.
+      </p> -->
+      <div class="pt-6">
+        <a href="/blog" class="text-black underline decoration-slate-300 underline-offset-4 hover:decoration-black transition">
+          Read my work &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+</LayoutMain>

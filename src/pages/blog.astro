@@ -1,0 +1,56 @@
+---
+import LayoutMain from '../layouts/LayoutMain.astro';
+
+// Mengambil semua file markdown di folder blog
+const posts = await Astro.glob('./blog/*.md');
+
+// Mengurutkan postingan berdasarkan tanggal terbaru
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+);
+---
+
+<LayoutMain title=" Blog">
+  <header class="mb-16">
+    <h1 class="text-3xl font-serif font-medium tracking-tight mb-2 italic">Blog.</h1>
+    <p class="text-slate-700 leading-relaxed font-serif">anything stuff here. including insights, thoughts and works.</p>
+  </header>
+
+  <div class="space-y-16">
+    {sortedPosts.map((post) => (
+      <article class="group relative flex flex-col items-start">
+        <time class="text-sm text-slate-400 mb-3 block font-medium">
+          {new Date(post.frontmatter.date).toLocaleDateString('id-ID', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+
+        <h3 class="text-xl font-serif font-medium text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
+          <a href={post.url}>
+            <span class="absolute -inset-y-4 -inset-x-4 z-0 scale-95 bg-slate-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"></span>
+            <span class="relative z-10">{post.frontmatter.title}</span>
+          </a>
+        </h3>
+
+        <p class="relative z-10 mt-3 text-slate-600 leading-relaxed line-clamp-3 font-serif">
+          {post.frontmatter.description || "Klik untuk membaca selengkapnya tentang tulisan ini..."}
+        </p>
+
+        <div class="relative z-10 mt-4 flex items-center text-sm font-semibold text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          See more
+          <svg class="ml-1 h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  {sortedPosts.length === 0 && (
+    <div class="py-20 text-center border border-dashed border-slate-200 rounded-xl">
+      <p class="text-slate-400 italic font-serif">Belum ada tulisan yang diterbitkan.</p>
+    </div>
+  )}
+</LayoutMain>

@@ -1,0 +1,129 @@
+---
+import LayoutMain from '../layouts/LayoutMain.astro';
+
+// Data CV (bisa Anda pindahkan ke file JSON nanti agar rapi)
+const pengalaman = [
+  {
+    posisi: "Software Developer",
+    perusahaan: "Medisafe, YTY (id-my)",
+    durasi: "2024 — Now",
+    deskripsi: "Maintaining and enhancing Oracle Forms & Reports ERP systems while driving digital transformation through full stack Web Development. Proven track record in building mobile solutions using Flutter, like barcode-integrated inventory systems."
+  },
+  {
+    posisi: "Developer",
+    perusahaan: "Edervin (id)",
+    durasi: "2023 — 2024",
+    deskripsi: "Replace and upgrade legacy ERP systems to new environments,think through business logic and programming according to internal specifications. With full stack Laravel PHP and javascript."
+  },
+  {
+    posisi: "Developer ",
+    perusahaan: "Swiftx (sg)",
+    durasi: "2021 — 2022",
+    deskripsi: "Developing Report module with high level SQL based on C# ASP.NET MVC integrated with OpenText Content Server API. Developing scheduler program notification based windows service."
+  }
+];
+
+const edukasi = [
+  {
+    kampus: "Universitas Potensi Utama",
+    gelar: "Master of Computer Science (S2)",
+    tahun: "2025"
+  },
+  {
+    kampus: "Universitas Islam Negeri Sumatera Utara (UINSU)",
+    gelar: "Bachelor of Computer Science (S1)",
+    tahun: "2021"
+  },
+];
+---
+
+<LayoutMain title="Curriculum Vitae | Nama Anda">
+  <div class="max-w-2xl mx-auto">
+    <header class="mb-10 border-b border-slate-100 pb-3">
+      <h1 class="text-2xl font-serif font-medium italic tracking-tight text-slate-900 mb-2">
+        Adam Falizufa Sagara, M. Kom
+      </h1>
+      <h4 class="text-s font-serif font-medium italic tracking-tight text-slate-900 mb-2">Medan, Indonesia | adamsagara@protonmail.com</h4>
+      <p class="text-slate-700 leading-relaxed font-serif">
+        Master of Computer Science graduate with industry experience as a software developer and strong, up-to-date programming skills.
+        Has experience in AI-focused scientific writing in computer science and software development, combining academic research with real-world industry practice.
+      </p>
+    </header>
+
+    <div class="space-y-16">
+      <section>
+        <h2 class="text-xs uppercase tracking-[0.2em] text-slate-700 font-medium mb-3">
+          Experience
+        </h2>
+        <div class="space-y-10">
+          {pengalaman.map((item) => (
+            <div class="relative pl-0 md:pl-0">
+              <h3 class="text-xl font-serif font-medium italic text-slate-900 leading-none mb-1">
+                {item.posisi}
+              </h3>
+              <div class="flex flex-col md:flex-row md:justify-between text-sm mb-1">
+                <span class="font-medium text-slate-700">{item.perusahaan}</span>
+                <span class="text-slate-500 font-medium">{item.durasi}</span>
+              </div>
+              <p class="text-slate-600 leading-relaxed font-serif">
+                {item.deskripsi}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xs uppercase tracking-[0.2em] text-slate-700 font-medium mb-3">
+          Education
+        </h2>
+        <div class="space-y-8">
+          {edukasi.map((edu) => (
+            <div>
+              <h3 class="text-xl font-serif font-medium italic text-slate-900 mb-1">
+                {edu.kampus}
+              </h3>
+              <p class="text-slate-600 font-serif">{edu.gelar} <span class="text-slate-300 mx-2">/</span> {edu.tahun}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xs uppercase tracking-[0.2em] text-slate-400 font-medium mb-3">
+          SKILL
+        </h2>
+        <div class="flex flex-wrap gap-x-6 gap-y-3 font-medium text-slate-700">
+          <span class="underline decoration-slate-200 underline-offset-4">Web development and server</span>
+          <span class="underline decoration-slate-200 underline-offset-4">Backend, AI (PHP,Python,C#,JS)</span>
+          <span class="underline decoration-slate-200 underline-offset-4">Frontend, Flutter </span>
+          <span class="underline decoration-slate-200 underline-offset-4">MSsql, Orcale, Mysql</span>
+          <span class="underline decoration-slate-200 underline-offset-4">Linux, Git</span>
+          <span class="underline decoration-slate-200 underline-offset-4">Analyzing dan team building </span>
+        </div>
+      </section>
+    </div>
+
+    <footer class="mt-20 pt-10 border-t border-slate-100 no-print">
+      <button 
+        onclick="window.print()" 
+        class="text-sm font-bold text-slate-900 hover:text-blue-600 transition flex items-center gap-2"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+        </svg>
+        <!--Cetak atau Simpan sebagai-->
+         Print/PDF
+      </button>
+    </footer>
+  </div>
+</LayoutMain>
+
+<style>
+  @media print {
+    .no-print { display: none; }
+    nav { display: none; }
+    body { background: white; }
+    /* main { padding-top: 0; } */
+  </div>
+</style>

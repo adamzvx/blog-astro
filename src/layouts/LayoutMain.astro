@@ -1,0 +1,28 @@
+---
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+const { title } = Astro.props;
+---
+
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+  <body class="antialiased">
+    <nav class="max-w-3xl mx-auto px-6 py-10 flex justify-between items-center">
+      <a href="/" class="text-xl font-bold tracking-tighter">adam.</a>
+      <div class="space-x-6 text-sm font-medium text-slate-500">
+        <a href="/" class="hover:text-black transition">About</a>
+        <a href="/cv" class="hover:text-black transition">Cv</a>
+        <a href="/blog" class="hover:text-black transition">Blog</a>
+      </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 pb-20">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

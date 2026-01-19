@@ -1,0 +1,40 @@
+---
+// src/layouts/LayoutBlog.astro
+const { frontmatter } = Astro.props;
+import '../styles/global.css';
+---
+
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{frontmatter.title}</title>
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased">
+    
+    <main class="max-w-2xl mx-auto px-6 py-12 bg-white min-h-screen shadow-sm">
+      
+      <a href="/blog" class="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors">
+        ← Kembali ke Daftar Tulisan
+      </a>
+
+      <article class="mt-8">
+        <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight mb-2">
+          {frontmatter.title}
+        </h1>
+        
+        <p class="text-slate-500 text-sm mb-8">
+          Ditulis pada {frontmatter.date} • 5 menit baca
+        </p>
+
+        <div class="prose prose-slate lg:prose-lg mt-6 leading-relaxed">
+          <slot />
+        </div>
+      </article>
+
+      <footer class="mt-16 pt-8 border-t border-slate-100 text-center text-slate-400 text-sm">
+        &copy; 2024 Portofolio Saya. Dibuat dengan Astro & Tailwind.
+      </footer>
+    </main>
+  </body>
+</html>
